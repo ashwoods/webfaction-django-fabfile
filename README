@@ -1,0 +1,38 @@
+webfaction django deployment script
+===================================
+
+Small deployment script to automate deploying to django/gunicorn
+projects on webfaction.
+
+Uses the webfaction API to create the apps, and installs supervisor 
+to run gunicorn.
+
+Requirements
+============
+
+Fabric
+
+Makes specific asumptions of the project layout:
+
+requirements.pip file containing python requirements
+setup.py that defines a bin/manage.py (look at linconlnloop startproject for an example)
+
+only supports git repos atm.
+
+Usage
+=====
+just drop in your repo or submodule it.
+cp fabsettings.py and adapt to your needs.
+
+And deploy:
+   fab deploy
+
+Available commands:
+   fab --list 
+   fab deploy
+   fab deploy:quick
+
+
+
+
+
