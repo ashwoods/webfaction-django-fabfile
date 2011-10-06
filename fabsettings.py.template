@@ -1,0 +1,9 @@
+# your projects settings
+
+WF_HOST       =     "example.webfaction.com"
+PROJECT_NAME  =     "foo"
+REPOSITORY    =     "git@github.com:joe/foo.git"
+USER          =     "joe"
+PASSWORD      =     "secret"
+SETTINGS_SUBDIR =   "foo"
+VIRTUALENVS   =     "/path/to/virtualenvs"
