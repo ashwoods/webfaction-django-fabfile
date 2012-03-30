@@ -1,1 +1,0 @@
-*/10 * * * * %(dir)s/start_supervisor.sh
