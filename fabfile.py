@@ -6,10 +6,11 @@ and supervisor.
 
 
 from fabric.api import *
-from fabric.contrib.files import upload_template, exists
+from fabric.contrib.files import upload_template, exists, append
 import xmlrpclib
 import sys
 
+import string, random
 
 try:
     from fabsettings import WF_HOST, PROJECT_NAME, REPOSITORY, USER, PASSWORD, VIRTUALENVS, SETTINGS_SUBDIR
@@ -100,9 +101,16 @@ def install_supervisor():
                     mode=0750,
                     )
 
-    upload_template('templates/crontab','/tmp/crontab.tmp.1978',{'dir':env.supervisor_dir,},)
 
-    run('crontab /tmp/crontab.tmp.1978')
+
+    # add to crontab
+
+    filename = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(7))
+    run('crontab -l > /tmp/%s' % filename)
+    append('/tmp/%s' % filename, '*/10 * * * * %s/start_supervisor.sh start' % env.supervisor_dir)
+    run('crontab /tmp/%s' % filename)
+
+
     # create supervisor/conf.d
     with cd(env.supervisor_dir):
         run('mkdir conf.d')

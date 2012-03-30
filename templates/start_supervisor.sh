@@ -52,7 +52,7 @@ start () {
  
 stop () {
     echo "Stopping Supervisor daemon manager..."
-    $SUPERVISORCTL shutdown ||  echo "Failed...!"
+    $SUPERVISORCTL $OPTS shutdown ||  echo "Failed...!"
     echo "OK"
 }
  
