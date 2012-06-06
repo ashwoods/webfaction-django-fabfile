@@ -50,7 +50,7 @@ def install_app():
     """Installs the django project in its own wf app and virtualenv
     """
     response = _webfaction_create_app(env.project)
-    env.port = response['port']
+    env.app_port = response['port']
 
     # upload template to supervisor conf
     upload_template('templates/gunicorn.conf',
@@ -59,7 +59,7 @@ def install_app():
                         'project': env.project,
                         'project_dir': env.settings_dir,
                         'virtualenv':'%s/%s' % (env.virtualenv_dir, env.project),
-                        'port': env.port,
+                        'port': env.app_port,
                         'user': env.user,
                      }
                     )
